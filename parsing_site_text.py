@@ -10,8 +10,9 @@ soup = BeautifulSoup(response.text, 'lxml')
 quotes = soup.find_all('p') + soup.find_all('ul') + soup.find_all('ol')
 # абзацы, списки (маркированные и нумерованные)
 
-for quote in quotes:
-    print(quote.text)
-    # print(quote.text.encode('utf-8', 'replace').decode('utf-8', 'replace'))
+with open('output.txt', 'w', encoding='utf-8') as f:
+    for quote in quotes:
+        # print(quote.text)
+        f.write(quote.txt)  # TODO quote.txt возвращает None
 
 # print(quotes)
