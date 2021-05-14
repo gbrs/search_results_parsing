@@ -1,8 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://metalloobrabotkaspb.ru/'
+url = 'https://ferropolis.ru/'
 response = requests.get(url)
+response.encoding = 'utf-8'
 # print(response.text)
 
 soup = BeautifulSoup(response.text, 'lxml')
