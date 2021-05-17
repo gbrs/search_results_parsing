@@ -33,7 +33,7 @@ def erase_line_break(file_name):
     '''
     стирает пустые строки из файла
     :param file_name: обрабатываемый файл
-    :return: перезаписывает обработанный файл
+    :return: None. Перезаписывает обработанный файл
     '''
     with open('output.txt', encoding='utf-8') as f:
         txt = f.read()
