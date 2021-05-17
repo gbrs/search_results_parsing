@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def parse_site(url):
     '''
     парсит текст с сайта по указанному адресу
@@ -19,13 +20,29 @@ def parse_site(url):
 
     with open('output.txt', 'a', encoding='utf-8') as f:
         for quote in quotes:
+            # print(quote.text)
             txt = quote.text
-            if txt != '\n':  # TODO не работает условие - куча пустых строк. Почему?
-                f.write(txt)
-                f.write('\n')
+            f.write(txt)
+            f.write('\n')
             # quote.txt здесь возвращал None, а внутри print - строку.
             # пришлось ввести промежуточную переменную txt
-        f.write(3 * '_____________________________________________________________________________\n')
+        f.write('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n' * 3)
+
+
+def erase_line_break(file_name):
+    '''
+    стирает пустые строки из файла
+    :param file_name: обрабатываемый файл
+    :return: перезаписывает обработанный файл
+    '''
+    with open('output.txt', encoding='utf-8') as f:
+        txt = f.read()
+        while '\n\n' in txt:
+            txt = txt.replace('\n\n', '\n')
+        # print(txt)
+
+    with open('output.txt', 'w', encoding='utf-8') as f:
+        f.write(txt)
 
 
 with open('urls.txt', encoding='utf-8') as f:
@@ -34,3 +51,5 @@ print(urls)
 
 for url in urls:
     parse_site(url)
+
+erase_line_break('output.txt')
