@@ -1,3 +1,7 @@
+'''
+по заданному из файла списку сайтов парсим их содержимое
+'''
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -30,7 +34,7 @@ def parse_site(url):
     print(url)
 
 
-def erase_blank_break(file_name):
+def erase_blank_lines(file_name):
     '''
     стирает пустые строки из файла
     :param file_name: обрабатываемый файл
@@ -52,4 +56,4 @@ with open('urls.txt', encoding='utf-8') as f:
 for url in urls:
     parse_site(url)
 
-erase_blank_break('output.txt')
+erase_blank_lines('output.txt')
