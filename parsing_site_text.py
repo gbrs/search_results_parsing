@@ -27,9 +27,10 @@ def parse_site(url):
             # quote.txt здесь возвращал None, а внутри print - строку.
             # пришлось ввести промежуточную переменную txt
         f.write('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n' * 3)
+    print(url)
 
 
-def erase_line_break(file_name):
+def erase_blank_break(file_name):
     '''
     стирает пустые строки из файла
     :param file_name: обрабатываемый файл
@@ -47,9 +48,8 @@ def erase_line_break(file_name):
 
 with open('urls.txt', encoding='utf-8') as f:
     urls = f.read().split()
-print(urls)
 
 for url in urls:
     parse_site(url)
 
-erase_line_break('output.txt')
+erase_blank_break('output.txt')
