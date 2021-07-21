@@ -19,7 +19,7 @@ def parse_site(url):
     response.encoding = 'utf-8'
 
     soup = BeautifulSoup(response.text, 'lxml')
-    quotes = soup.find_all('p') + soup.find_all('ul') + soup.find_all('ol')
+    quotes = soup.find_all(['p', 'ul', 'ol'])
     # абзацы, списки (маркированные и нумерованные)
 
     with open('output.txt', 'a', encoding='utf-8') as f:
