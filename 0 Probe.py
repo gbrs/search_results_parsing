@@ -1,19 +1,23 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://yandex.ru/search/?clid=9582&text=металлообработка%20в%20спб&l10n=en-US&lr=2'
-# url = 'https://en.wikipedia.org/wiki/Beautiful_Soup_(HTML_parser)'
-# url = 'https://dev-gang.ru/article/rukovodstvo-po-sintaksiczeskomu-analizu-html-s-pomosczu-beautifulsoup-v-python-kgnmwzixct/'
-response = requests.get(url)
-# print(response.text)
 
-soup = BeautifulSoup(response.text, 'lxml')
-
-print(soup)
+def get_html(url):
+    response = requests.get(url)
+    return response.text
 
 
-# quotes = soup.find_all('div')
-#
-# for quote in quotes:
-#     print(quote.text)
-#
+def get_data_items(html):
+    soup = BeautifulSoup(html, 'lxml')
+    items = soup.find_all('a', {'class' : 'link link_outer_yes link_theme_outer path__item i-bem'})
+
+    return [a.get('href') for a in items]
+
+
+def main():
+    url = 'https://yandex.ru/search/?clid=9582&text=скачать&lr=118890&p=1'
+    print(get_data_items(get_html(url)))
+
+
+if __name__ == '__main__':
+    main()

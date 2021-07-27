@@ -6,9 +6,11 @@ response = requests.get(url)
 # print(response.text)
 
 soup = BeautifulSoup(response.text, 'lxml')
-quotes = soup.find_all('div')
+# print(soup)
+# quotes = soup.find_all('div')
+quotes = soup.find_all('a', {'class': 'Link Link_theme_outer Path-Item link path__item'})
 
 for quote in quotes:
-    print(quote.text)
+    print(quote)
 
 # print(quotes)
